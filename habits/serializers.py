@@ -20,9 +20,14 @@ class HabitSerializer(serializers.ModelSerializer):
 
 
 class HabitRelatedSerializer(serializers.ModelSerializer):
+    habit = serializers.SerializerMethodField()
+
     class Meta:
         model = Habit
-        fields = ('id', 'action', 'time', 'place', 'periodicity', 'time_to_complete', 'created_date')
+        fields = ('habit',)
+
+    def get_habit(self, obj):
+        return str(obj)
 
 
 class PublicHabitSerializer(serializers.ModelSerializer):
@@ -35,7 +40,8 @@ class PublicHabitSerializer(serializers.ModelSerializer):
             return "Моя привычка"
         return "Не моя привычка"
 
-
     class Meta:
         model = Habit
-        fields = ('id', 'is_owner', 'action', 'time', 'place', 'periodicity', 'time_to_complete', 'is_good', 'related_habit', 'award')
+        fields = (
+            'id', 'is_owner', 'action', 'time', 'place', 'periodicity', 'time_to_complete', 'is_good', 'related_habit',
+            'award')

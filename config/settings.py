@@ -121,6 +121,7 @@ AUTH_USER_MODEL = 'users.User'
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+    "UPDATE_LAST_LOGIN": True,
 }
 
 SPECTACULAR_SETTINGS = {
@@ -146,7 +147,6 @@ CSRF_TRUSTED_ORIGINS = [
 
 CORS_ALLOW_ALL_ORIGINS = False
 
-
 # Настройки для Celery
 
 # Часовой пояс для работы Celery
@@ -168,7 +168,6 @@ CELERY_BEAT_SCHEDULE = {
         'schedule': timedelta(minutes=1),  # Расписание выполнения задачи (каждую минуту)
     },
 }
-
 
 # Настройки для отправки сообщение по E-mail
 
